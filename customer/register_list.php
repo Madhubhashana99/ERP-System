@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +45,12 @@
       <label for="firstName" class="form-label col-sm-2">First Name</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="middleName" class="form-label col-sm-2">Middle Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name">
       </div>
     </div>
     <div class="mb-3 row">
