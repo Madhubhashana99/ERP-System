@@ -38,9 +38,70 @@ body {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   }
 
-  .nested-links {
-    margin-left: 20px; /* Indent nested links */
-}
-.nested-links a {
-    display: block; /* Make nested links block level for easy styling */
-}
+
+  
+  /* Basic form styling */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Styling for form labels */
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  /* Style the form control elements */
+  .form-control {
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  /* Style the radio buttons */
+  .form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .form-check-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+  }
+  
+  .form-check-label {
+    margin-left: 8px;
+  }
+  
+  /* Style disabled state of radio buttons */
+  .form-check.disabled .form-check-input:disabled {
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+  }
+  
+  /* Style the checkbox */
+  .form-check-input[type="checkbox"] {
+    margin-top: 0.3rem;
+  }
+  
+  /* Style the submit button */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  /* Add some spacing between form elements */
+  .form-group {
+    margin-bottom: 1rem;
+  }
