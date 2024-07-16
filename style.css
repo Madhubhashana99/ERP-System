@@ -37,3 +37,10 @@ body {
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   }
+
+  .nested-links {
+    margin-left: 20px; /* Indent nested links */
+}
+.nested-links a {
+    display: block; /* Make nested links block level for easy styling */
+}

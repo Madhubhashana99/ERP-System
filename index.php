@@ -20,36 +20,44 @@
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Webiste traffic</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-lock fa-fw me-3"></i><span>Password</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-globe fa-fw me-3"></i><span>International</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-building fa-fw me-3"></i><span>Partners</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
-        >
+        
+    <a href="#submenu1" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="collapse">
+    <i class="fas fa-chart-area fa-fw me-3"></i><span>Customer</span>
+    </a>
+    <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+        <li class="w-100">
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 1</span></a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 2</span></a>
+        </li>
+    </ul>
+
+    <a href="#submenu2" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="collapse">
+        <i class="fas fa-chart-area fa-fw me-3"></i><span>Items</span>
+    </a>
+    <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+        <li class="w-100">
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 1</span></a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 2</span></a>
+        </li>
+    </ul>
+
+    <a href="#submenu3" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="collapse">
+        <i class="fas fa-chart-area fa-fw me-3"></i><span>Reports</span>
+    </a>
+    <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+        <li class="w-100">
+            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Item 1</span></a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Item 2</span></a>
+        </li>
+    </ul>
+
+        
       </div>
     </div>
   </nav>
