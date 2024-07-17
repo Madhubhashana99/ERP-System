@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "DELETE FROM customers WHERE id=$id";
+    $sql = "DELETE FROM customer WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
         echo "Record deleted successfully";
@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
     }
 
     $conn->close();
-    header("Location: index.php");
+    header("Location: customer_list.php");
     exit();
 } else {
     echo "No ID specified";
