@@ -144,6 +144,7 @@ if ($conn->connect_error) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const editableCells = document.querySelectorAll('.editable');
+  const searchInput = document.getElementById('form1');
   
   editableCells.forEach(cell => {
     cell.addEventListener('click', function() {
@@ -189,6 +190,17 @@ document.addEventListener('DOMContentLoaded', function() {
           cell.innerText = currentValue;
         }
       });
+    });
+  });
+
+  searchInput.addEventListener('input', function() {
+    const query = searchInput.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+    
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const isVisible = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(query));
+      row.style.display = isVisible ? '' : 'none';
     });
   });
 });
