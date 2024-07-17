@@ -27,10 +27,10 @@
     </a>
     <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
         <li class="w-100">
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 1</span></a>
+            <a href="customer/register_list.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Register</span></a>
         </li>
         <li>
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 2</span></a>
+            <a href="customer/customer_list.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Customer List</span></a>
         </li>
     </ul>
 
@@ -39,10 +39,10 @@
     </a>
     <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
         <li class="w-100">
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 1</span></a>
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Register</span></a>
         </li>
         <li>
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item 2</span></a>
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item List</span></a>
         </li>
     </ul>
 
