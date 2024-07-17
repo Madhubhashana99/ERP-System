@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Item Form</title>
-  <!-- Bootstrap CSS -->
+  <title>Item Registration</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     form {
@@ -29,7 +28,7 @@
   </style>
 </head>
 <body>
-  <form action="#" method="post">
+  <form action="register.php" method="post">
     <div class="mb-3 row">
       <label for="itemCode" class="form-label col-sm-2">Item Code</label>
       <div class="col-sm-10">
@@ -47,10 +46,11 @@
       <div class="col-sm-10">
         <select class="form-select" id="itemCategory" name="itemCategory" required>
           <option value="" disabled selected>Select Item Category</option>
-          <option value=""></option>
-          <option value=""></option>
-          <option value=""></option>
-          <!-- Add more categories as needed -->
+          <option value="printers">Printers</option>
+          <option value="laptops">Laptops</option>
+          <option value="gadgets">Gadgets</option>
+          <option value="inkbottles">Ink Bottles</option>
+          <option value="cartridges">Cartridges</option>
         </select>
       </div>
     </div>
@@ -59,7 +59,6 @@
       <div class="col-sm-10">
         <select class="form-select" id="itemSubCategory" name="itemSubCategory" required>
           <option value="" disabled selected>Select Item Sub-Category</option>
-          <!-- Sub-categories will be populated based on the selected category -->
         </select>
       </div>
     </div>
@@ -82,20 +81,19 @@
     </div>
   </form>
 
-  <!-- Bootstrap JS and dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   
-  <!-- Script to populate sub-categories based on selected category -->
   <script>
     document.getElementById('itemCategory').addEventListener('change', function() {
       var subCategorySelect = document.getElementById('itemSubCategory');
       var category = this.value;
       var subCategories = {
-        electronics: ['Phones', 'Laptops', 'Headphones'],
-        clothing: ['Men', 'Women', 'Children'],
-        furniture: ['Sofas', 'Tables', 'Chairs']
-        // Add more categories and their sub-categories as needed
+        printers: ['HP', 'Canon', 'Epson'],
+        laptops: ['Dell', 'HP', 'Lenovo', 'Acer', 'Asus'],
+        gadgets: ['Smartphones', 'Tablets', 'Smartwatches'],
+        inkbottles: ['Black', 'Cyan', 'Magenta', 'Yellow'],
+        cartridges: ['Inkjet', 'Laser', 'Toner']
       };
 
       // Clear existing options
