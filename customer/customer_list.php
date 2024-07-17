@@ -34,8 +34,9 @@ if ($conn->connect_error) {
       text-align: center;
       padding: 12px;
       vertical-align: middle;
+      cursor: pointer;
     }
-    thead th {
+    th {
       background-color: #007bff;
       color: #fff;
     }
@@ -69,7 +70,6 @@ if ($conn->connect_error) {
       background-color: #c82333;
       border-color: #bd2130;
     }
-    /* Custom styles for the search input */
     .form-outline {
       margin: 20px auto;
       max-width: 500px;
@@ -117,14 +117,13 @@ if ($conn->connect_error) {
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <th scope='row'>" . $row["id"] . "</th>
-                        <td>" . $row["title"] . "</td>
-                        <td>" . $row["first_name"] . "</td>
-                        <td>" . $row["last_name"] . "</td>
-                        <td>" . $row["contact_no"] . "</td>
-                        <td>" . $row["district"] . "</td>
+                        <th scope='row' data-id='" . $row["id"] . "'>" . $row["id"] . "</th>
+                        <td class='editable' data-field='title'>" . $row["title"] . "</td>
+                        <td class='editable' data-field='first_name'>" . $row["first_name"] . "</td>
+                        <td class='editable' data-field='last_name'>" . $row["last_name"] . "</td>
+                        <td class='editable' data-field='contact_no'>" . $row["contact_no"] . "</td>
+                        <td class='editable' data-field='district'>" . $row["district"] . "</td>
                         <td>
-                          <a href='update.php?id=" . $row["id"] . "' class='btn btn-update btn-sm'>Update</a>
                           <a href='delete.php?id=" . $row["id"] . "' class='btn btn-delete btn-sm'>Delete</a>
                         </td>
                       </tr>";
@@ -138,8 +137,62 @@ if ($conn->connect_error) {
   </table>
 </div>
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const editableCells = document.querySelectorAll('.editable');
+  
+  editableCells.forEach(cell => {
+    cell.addEventListener('click', function() {
+      const currentValue = this.innerText;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = currentValue;
+      this.innerHTML = '';
+      this.appendChild(input);
+      input.focus();
+
+      input.addEventListener('blur', function() {
+        const newValue = input.value;
+        const field = cell.getAttribute('data-field');
+        const id = cell.parentElement.querySelector('th').getAttribute('data-id');
+        
+        if (newValue !== currentValue) {
+          fetch('update.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: id,
+              field: field,
+              value: newValue
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              cell.innerText = newValue;
+            } else {
+              alert('Update failed');
+              cell.innerText = currentValue;
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            cell.innerText = currentValue;
+          });
+        } else {
+          cell.innerText = currentValue;
+        }
+      });
+    });
+  });
+});
+</script>
+
 </body>
 </html>
