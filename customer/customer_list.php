@@ -1,3 +1,18 @@
+<?php
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "db";
+
+// Create connection
+$conn = new mysqli($db_server, $db_user, $db_pass, $db_name);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,23 +104,36 @@
         <th scope="col">Title (Mr/Mrs/Miss/Dr)</th>
         <th scope="col">First name</th>
         <th scope="col">Last name</th>
-        <th scope="col">AContact number</th>
+        <th scope="col">Contact number</th>
         <th scope="col">District</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <button class="btn btn-update btn-sm">Update</button>
-          <button class="btn btn-delete btn-sm">Delete</button>
-        </td>
-      </tr>
+      <?php
+        $sql = "SELECT id, title, first_name, last_name, contact_no, district FROM customer";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <th scope='row'>" . $row["id"] . "</th>
+                        <td>" . $row["title"] . "</td>
+                        <td>" . $row["first_name"] . "</td>
+                        <td>" . $row["last_name"] . "</td>
+                        <td>" . $row["contact_no"] . "</td>
+                        <td>" . $row["district"] . "</td>
+                        <td>
+                          <a href='update.php?id=" . $row["id"] . "' class='btn btn-update btn-sm'>Update</a>
+                          <a href='delete.php?id=" . $row["id"] . "' class='btn btn-delete btn-sm'>Delete</a>
+                        </td>
+                      </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>No records found</td></tr>";
+        }
+        $conn->close();
+      ?>
     </tbody>
   </table>
 </div>
