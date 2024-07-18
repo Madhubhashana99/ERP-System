@@ -39,10 +39,10 @@
     </a>
     <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
         <li class="w-100">
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Register</span></a>
+            <a href="items/register_items.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Register</span></a>
         </li>
         <li>
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item List</span></a>
+            <a href="items/item_list.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Item List</span></a>
         </li>
     </ul>
 
@@ -51,10 +51,13 @@
     </a>
     <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
         <li class="w-100">
-            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Item 1</span></a>
+            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Invoice Report</span></a>
         </li>
         <li>
-            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Item 2</span></a>
+            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Invoice Item Report</span></a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Item Report</span></a>
         </li>
     </ul>
 
