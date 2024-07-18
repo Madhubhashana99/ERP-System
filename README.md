@@ -3,7 +3,7 @@
 Overview
 This ERP system is developed using PHP and MySQL to manage various operations such as storing, updating, deleting, and searching data related to customers, items, and generating reports. The system includes functionalities for handling Customer data, Item details, and generating various reports including Invoice report, Invoice item report, and Item report.
 
-Tasks Covered
+Tasks Covered<br>
 Task 1: Customer Management
 Store/Register Customer Data
 
