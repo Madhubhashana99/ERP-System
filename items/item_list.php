@@ -1,3 +1,18 @@
+<?php
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "db";
+
+// Create connection
+$conn = new mysqli($db_server, $db_user, $db_pass, $db_name);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,32 +103,110 @@
         <th scope="col">#</th>
         <th scope="col">Item code</th>
         <th scope="col">Item name</th>
-        <th scope="col">Item category/th>
+        <th scope="col">Item category</th>
         <th scope="col">Item sub category</th>
         <th scope="col">Quantity</th>
         <th scope="col">Unit price</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <button class="btn btn-update btn-sm">Update</button>
-          <button class="btn btn-delete btn-sm">Delete</button>
-        </td>
-      </tr>
+      <?php
+        $sql = "SELECT id, item_code, item_name, item_category, item_subcategory, quantity, unit_price FROM item";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <th scope='row' data-id='" . $row["id"] . "'>" . $row["id"] . "</th>
+                        <td class='editable' data-field='item_code'>" . $row["item_code"] . "</td>
+                        <td class='editable' data-field='item_name'>" . $row["item_name"] . "</td>
+                        <td class='editable' data-field='item_category'>" . $row["item_category"] . "</td>
+                        <td class='editable' data-field='item_sub_category'>" . $row["item_subcategory"] . "</td>
+                        <td class='editable' data-field='quantity'>" . $row["quantity"] . "</td>
+                        <td class='editable' data-field='unit_price'>" . $row["unit_price"] . "</td>
+                        <td>
+                          <a href='delete.php?id=" . $row["id"] . "' class='btn btn-delete btn-sm'>Delete</a>
+                        </td>
+                      </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='8'>No records found</td></tr>";
+        }
+        $conn->close();
+      ?>
     </tbody>
   </table>
 </div>
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const editableCells = document.querySelectorAll('.editable');
+  const searchInput = document.getElementById('form1');
+  
+  editableCells.forEach(cell => {
+    cell.addEventListener('click', function() {
+      const currentValue = this.innerText;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = currentValue;
+      this.innerHTML = '';
+      this.appendChild(input);
+      input.focus();
+
+      input.addEventListener('blur', function() {
+        const newValue = input.value;
+        const field = cell.getAttribute('data-field');
+        const id = cell.parentElement.querySelector('th').getAttribute('data-id');
+        
+        if (newValue !== currentValue) {
+          fetch('update.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: id,
+              field: field,
+              value: newValue
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              cell.innerText = newValue;
+            } else {
+              alert('Update failed');
+              cell.innerText = currentValue;
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            cell.innerText = currentValue;
+          });
+        } else {
+          cell.innerText = currentValue;
+        }
+      });
+    });
+  });
+
+  searchInput.addEventListener('input', function() {
+    const query = searchInput.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+    
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const isVisible = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(query));
+      row.style.display = isVisible ? '' : 'none';
+    });
+  });
+});
+</script>
+
 </body>
 </html>
