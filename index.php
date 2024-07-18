@@ -51,13 +51,13 @@
     </a>
     <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
         <li class="w-100">
-            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Invoice Report</span></a>
+            <a href="reports/invoice_report.php" class="nav-link px-1"> <span class="d-none d-sm-inline">Invoice Report</span></a>
         </li>
         <li>
-            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Invoice Item Report</span></a>
+            <a href="reports/invoice_item_report.php" class="nav-link px-1"> <span class="d-none d-sm-inline">Invoice Item Report</span></a>
         </li>
         <li>
-            <a href="#" class="nav-link px-1"> <span class="d-none d-sm-inline">Item Report</span></a>
+            <a href="reports/item_report.php" class="nav-link px-1"> <span class="d-none d-sm-inline">Item Report</span></a>
         </li>
     </ul>
 
